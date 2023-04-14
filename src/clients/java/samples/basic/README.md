@@ -7,10 +7,13 @@ This project creates two accounts (`1` and `2`) and
 transfers `10` of an amount from account `1` to
 account `2`.
 
-It then fetches both accounts, checks they both exist, and
-checks that account `1` has `debits_posted = 10`,
-`credits_posted = 0`; and that account `2` has `debits_posted
-= 0`, `credits_posted = 10`.
+Then it fetches both accounts, checks they both exist, and
+checks that account `1` has:
+ * `debits_posted = 10` and
+ * `credits_posted = 0`
+And that account `2` has:
+ * `debits_posted= 0` and
+ * `credits_posted = 10`
 
 ## Prerequisites
 

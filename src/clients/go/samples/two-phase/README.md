@@ -7,11 +7,17 @@ This project creates two accounts (`1` and `2`) and begins a
 pending transfer of `500` of an amount from account `1` to
 account `2`.
 
-Then it checks that account `1` has `debits_posted = 0`,
-`credits_posted = 0`, `debits_pending = 500`, and
-`credits_pending = 0`; and that account `2` has
-`debits_posted = 0`, `credits_posted = 0`, `debits_pending =
-0`, and `credits_pending = 500`. This is because a pending
+Then it checks that **account `1`** has:
+ * `debits_posted = 0`
+ * `credits_posted = 0`
+ * `debits_pending = 500` and
+ * `credits_pending = 0`
+And that **account `2`** has:
+ * `debits_posted = 0`
+ * `credits_posted = 0`
+ * `debits_pending = 0` and
+ *`credits_pending = 500`
+ This is because a pending
 transfer only affects pending credits and debits on accounts,
 not posted credits and debits.
 
@@ -26,11 +32,16 @@ Finally, it fetches both accounts, validates they both exist,
 and checks that credits and debits for both account are now
 *posted*, not pending.
 
-Specifically, that account `1` has `debits_posted = 500`,
-`credits_posted = 0`, `debits_pending = 0`, and
-`credits_pending = 0`; and that account `2` has
-`debits_posted = 0`, `credits_posted = 500`, `debits_pending =
-0`, and `credits_pending = 0`.
+Specifically, that **account `1`** has:
+ * `debits_posted = 500`
+ * `credits_posted = 0`
+ * `debits_pending = 0` and
+ * `credits_pending = 0`
+And that account `2` has:
+ * `debits_posted = 0`
+ * `credits_posted = 500`
+ * `debits_pending = 0` and
+ * `credits_pending = 0`
 
 ## Prerequisites
 
