@@ -941,6 +941,7 @@ const Generator = struct {
             ));
 
             mw.header(2, "Walkthrough");
+            mw.paragraph("Here's what this project does.");
             mw.paragraph(sample.long_description);
 
             const root = try git_root(self.arena);

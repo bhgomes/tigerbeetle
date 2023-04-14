@@ -23,6 +23,8 @@ $ go mod tidy
 
 ## Walkthrough
 
+Here's what this project does.
+
 ## 1. Create accounts
 
 This project starts by creating two accounts (`1` and `2`).
