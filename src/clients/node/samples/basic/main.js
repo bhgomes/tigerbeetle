@@ -57,6 +57,7 @@ async function main() {
   assert.equal(transferErrors.length, 0);
 
   let accounts = await client.lookupAccounts([1n, 2n]);
+  assert.equal(accounts.length, 2);
   for (let account of accounts) {
     if (account.id === 1n) {
       assert.equal(account.debits_posted, 10n);

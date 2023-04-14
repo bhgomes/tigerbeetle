@@ -1,7 +1,7 @@
 const Docs = @import("../docs_types.zig").Docs;
 
 pub const JavaDocs = Docs{
-    .readme = "java/README.md",
+    .directory = "java",
 
     .markdown_name = "java",
     .extension = "java",
@@ -12,7 +12,7 @@ pub const JavaDocs = Docs{
     .test_source_path = "src/main/java/",
 
     .name = "tigerbeetle-java",
-    .description = 
+    .description =
     \\The TigerBeetle client for Java.
     \\
     \\[![javadoc](https://javadoc.io/badge2/com.tigerbeetle/tigerbeetle-java/javadoc.svg)](https://javadoc.io/doc/com.tigerbeetle/tigerbeetle-java)
@@ -20,13 +20,13 @@ pub const JavaDocs = Docs{
     \\[![maven-central](https://img.shields.io/maven-central/v/com.tigerbeetle/tigerbeetle-java)](https://central.sonatype.com/namespace/com.tigerbeetle)
     ,
 
-    .prerequisites = 
+    .prerequisites =
     \\* Java >= 11
     \\* Maven >= 3.6 (not strictly necessary but it's what our guides assume)
     ,
 
     .project_file_name = "pom.xml",
-    .project_file = 
+    .project_file =
     \\<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     \\         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     \\  <modelVersion>4.0.0</modelVersion>
@@ -77,7 +77,7 @@ pub const JavaDocs = Docs{
 
     .test_file_name = "Main",
 
-    .install_sample_file = 
+    .install_sample_file =
     \\package com.tigerbeetle.examples;
     \\
     \\import com.tigerbeetle.*;
@@ -91,7 +91,7 @@ pub const JavaDocs = Docs{
 
     .install_prereqs = "apk add -U maven openjdk11",
 
-    .current_commit_pre_install_commands = 
+    .current_commit_pre_install_commands =
     \\mvn deploy:deploy-file -Durl=file://$(pwd) -Dfile=$(find . -name '*-SNAPSHOT.jar') -DgroupId=com.tigerbeetle -DartifactId=tigerbeetle-java -Dpackaging=jar -Dversion=0.0.1-3431
     \\mkdir -p $HOME/.m2/
     \\echo '<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"><localRepository>'$(pwd)'</localRepository></settings>' > $HOME/.m2/settings.xml
@@ -99,11 +99,11 @@ pub const JavaDocs = Docs{
 
     .current_commit_post_install_commands = "",
 
-    .install_commands = 
+    .install_commands =
     \\mvn install
     ,
 
-    .install_sample_file_build_commands = 
+    .install_sample_file_build_commands =
     \\mvn compile
     ,
     .install_sample_file_test_commands = "mvn exec:java",
@@ -112,14 +112,14 @@ pub const JavaDocs = Docs{
 
     .examples = "",
 
-    .client_object_example = 
+    .client_object_example =
     \\Client client = new Client(
     \\  0,
     \\  new String[] {"3001", "3002", "3003"}
     \\);
     ,
 
-    .client_object_documentation = 
+    .client_object_documentation =
     \\If you create a `Client` like this, don't forget to call
     \\`client.close()` when you are done with it. Otherwise you
     \\can use the
@@ -134,7 +134,7 @@ pub const JavaDocs = Docs{
     \\```
     ,
 
-    .create_accounts_example = 
+    .create_accounts_example =
     \\AccountBatch accounts = new AccountBatch(1);
     \\accounts.add();
     \\accounts.setId(137);
@@ -146,7 +146,7 @@ pub const JavaDocs = Docs{
     \\CreateAccountResultBatch accountErrors = client.createAccounts(accounts);
     ,
 
-    .create_accounts_documentation = 
+    .create_accounts_documentation =
     \\The 128-bit fields like `id` and `user_data` have a few
     \\overrides to make it easier to integrate. You can either
     \\pass in a long, a pair of longs (least and most
@@ -157,7 +157,7 @@ pub const JavaDocs = Docs{
     \\between instances of `long`, `UUID`, `BigInteger` and `byte[]`.
     ,
 
-    .account_flags_documentation = 
+    .account_flags_documentation =
     \\To toggle behavior for an account, combine enum values stored in the
     \\`AccountFlags` object with bitwise-or:
     \\
@@ -166,7 +166,7 @@ pub const JavaDocs = Docs{
     \\* `AccountFlags.CREDITS_MUST_NOT_EXCEED_CREDITS`
     ,
 
-    .account_flags_example = 
+    .account_flags_example =
     \\accounts = new AccountBatch(3);
     \\
     \\// First account
@@ -181,7 +181,7 @@ pub const JavaDocs = Docs{
     \\accountErrors = client.createAccounts(accounts);
     ,
 
-    .create_accounts_errors_example = 
+    .create_accounts_errors_example =
     \\accounts = new AccountBatch(3);
     \\
     \\// First account
@@ -215,14 +215,14 @@ pub const JavaDocs = Docs{
 
     .create_accounts_errors_documentation = "",
 
-    .lookup_accounts_example = 
+    .lookup_accounts_example =
     \\IdBatch ids = new IdBatch(2);
     \\ids.add(137);
     \\ids.add(138);
     \\accounts = client.lookupAccounts(ids);
     ,
 
-    .create_transfers_example = 
+    .create_transfers_example =
     \\TransferBatch transfers = new TransferBatch(1);
     \\transfers.add();
     \\transfers.setId(1);
@@ -240,7 +240,7 @@ pub const JavaDocs = Docs{
 
     .create_transfers_documentation = "",
 
-    .create_transfers_errors_example = 
+    .create_transfers_errors_example =
     \\while (transferErrors.next()) {
     \\    switch (transferErrors.getResult()) {
     \\        case ExceedsCredits:
@@ -259,7 +259,7 @@ pub const JavaDocs = Docs{
 
     .create_transfers_errors_documentation = "",
 
-    .no_batch_example = 
+    .no_batch_example =
     \\for (int i = 0; i < transfers.length; i++) {
     \\  TransferBatch batch = new TransferBatch(1);
     \\  batch.add();
@@ -272,7 +272,7 @@ pub const JavaDocs = Docs{
     \\}
     ,
 
-    .batch_example = 
+    .batch_example =
     \\var BATCH_SIZE = 8191;
     \\for (int i = 0; i < transfers.length; i += BATCH_SIZE) {
     \\  TransferBatch batch = new TransferBatch(BATCH_SIZE);
@@ -289,7 +289,7 @@ pub const JavaDocs = Docs{
     \\}
     ,
 
-    .transfer_flags_documentation = 
+    .transfer_flags_documentation =
     \\To toggle behavior for an account, combine enum values stored in the
     \\`TransferFlags` object with bitwise-or:
     \\
@@ -300,7 +300,7 @@ pub const JavaDocs = Docs{
     \\* `TransferFlags.VOID_PENDING_TRANSFER`
     ,
 
-    .transfer_flags_link_example = 
+    .transfer_flags_link_example =
     \\transfers = new TransferBatch(2);
     \\
     \\// First transfer
@@ -314,7 +314,7 @@ pub const JavaDocs = Docs{
     \\transferErrors = client.createTransfers(transfers);
     ,
 
-    .transfer_flags_post_example = 
+    .transfer_flags_post_example =
     \\transfers = new TransferBatch(1);
     \\
     \\// First transfer
@@ -324,7 +324,7 @@ pub const JavaDocs = Docs{
     \\transferErrors = client.createTransfers(transfers);
     ,
 
-    .transfer_flags_void_example = 
+    .transfer_flags_void_example =
     \\transfers = new TransferBatch(1);
     \\
     \\// First transfer
@@ -334,14 +334,14 @@ pub const JavaDocs = Docs{
     \\transferErrors = client.createTransfers(transfers);
     ,
 
-    .lookup_transfers_example = 
+    .lookup_transfers_example =
     \\ids = new IdBatch(2);
     \\ids.add(1);
     \\ids.add(2);
     \\transfers = client.lookupTransfers(ids);
     ,
 
-    .linked_events_example = 
+    .linked_events_example =
     \\transfers = new TransferBatch(10);
     \\
     \\// An individual transfer (successful):
@@ -388,7 +388,7 @@ pub const JavaDocs = Docs{
     \\transferErrors = client.createTransfers(transfers);
     ,
 
-    .developer_setup_sh_commands = 
+    .developer_setup_sh_commands =
     \\git clone https://github.com/tigerbeetledb/tigerbeetle
     \\cd tigerbeetle
     \\git checkout $GIT_SHA
@@ -399,7 +399,7 @@ pub const JavaDocs = Docs{
 
     .developer_setup_pwsh_commands = "",
 
-    .test_main_prefix = 
+    .test_main_prefix =
     \\package com.tigerbeetle.examples;
     \\
     \\import com.tigerbeetle.*;

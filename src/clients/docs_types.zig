@@ -9,8 +9,8 @@ const Code = []const u8;
 const Markdown = []const u8;
 
 pub const Docs = struct {
-    // Location of the readme on disk
-    readme: String,
+    // Name of the directory (relative to /src/clients)
+    directory: String,
 
     // Package name (i.e. tigerbeetle-go, tigerbeetle-node, etc.)
     name: String,
@@ -119,4 +119,18 @@ pub const Docs = struct {
     // All code that must exist after sample code is concatenated such
     // as closing braces.
     test_main_suffix: Code,
+};
+
+pub const Sample = struct {
+    // Capitalized name of the sample program
+    proper_name: String,
+
+    // e.g. `basic`, `two-phase`, etc.
+    directory: String,
+
+    // For use in the language primary README
+    short_description: String,
+
+    // For use as the introduction on the individual sample README
+    long_description: String,
 };
