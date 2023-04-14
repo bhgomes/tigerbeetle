@@ -908,8 +908,14 @@ const Generator = struct {
                 ,
             );
 
+            var main_file_name = if (std.mem.eql(u8, language.directory, "go") or
+                std.mem.eql(u8, language.directory, "node"))
+                "main"
+            else
+                "Main";
+
             mw.print(
-                \\# {s} {s} Sample\n\n
+                \\# {s} {s} Sample
                 \\
                 \\  Code for this sample is primarily in [./{s}{s}.{s}](./{s}{s}.{s}).
                 \\
@@ -917,10 +923,10 @@ const Generator = struct {
                 sample.proper_name,
                 language.proper_name,
                 language.test_source_path,
-                self.test_file_name,
+                main_file_name,
                 language.extension,
                 language.test_source_path,
-                self.test_file_name,
+                main_file_name,
                 language.extension,
             });
 
