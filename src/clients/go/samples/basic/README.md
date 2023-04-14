@@ -12,7 +12,7 @@ support. But for ease of development we also support macOS and Windows.
 
 ## Setup
 
-Clone this repo and `cd` into `tigerbeetle/src/clients/go/samples/basic`
+First, clone this repo and `cd` into `tigerbeetle/src/clients/go/samples/basic`.
 
 Then, install the TigerBeetle client:
 

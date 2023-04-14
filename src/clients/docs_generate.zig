@@ -603,7 +603,7 @@ const Generator = struct {
 
         if (language.project_file.len > 0) {
             mw.print(
-                "First, create `{s}` and copy this into it:\n\n",
+                "Then create `{s}` and copy this into it:\n\n",
                 .{language.project_file_name},
             );
             mw.code(language.markdown_name, language.project_file);
@@ -632,7 +632,7 @@ const Generator = struct {
         mw.header(3, "Prerequisites");
         self.generate_language_setup_steps(
             mw,
-            \\ Create a directory for your project and `cd` into the directory.
+            \\ First, create a directory for your project and `cd` into the directory.
             ,
         );
 
@@ -933,7 +933,7 @@ const Generator = struct {
             mw.header(2, "Prerequisites");
 
             self.generate_language_setup_steps(mw, self.sprintf(
-                "Clone this repo and `cd` into `tigerbeetle/src/clients/{s}/samples/{s}`",
+                "First, clone this repo and `cd` into `tigerbeetle/src/clients/{s}/samples/{s}`.",
                 .{
                     language.directory,
                     sample.directory,

@@ -21,9 +21,9 @@ support. But for ease of development we also support macOS.
 
 ## Setup
 
- Create a directory for your project and `cd` into the directory.
+ First, create a directory for your project and `cd` into the directory.
 
-First, create `pom.xml` and copy this into it:
+Then create `pom.xml` and copy this into it:
 
 ```java
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

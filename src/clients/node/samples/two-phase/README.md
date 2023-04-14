@@ -12,7 +12,7 @@ support. But for ease of development we also support macOS.
 
 ## Setup
 
-Clone this repo and `cd` into `tigerbeetle/src/clients/node/samples/two-phase`
+First, clone this repo and `cd` into `tigerbeetle/src/clients/node/samples/two-phase`.
 
 Then, install the TigerBeetle client:
 
