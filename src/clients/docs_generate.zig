@@ -960,7 +960,7 @@ const Generator = struct {
                 \\
             , .{ sample.proper_name, language.proper_name });
 
-            mw.print("# {s}, {s} Sample", .{ sample.proper_name, language.proper_name });
+            mw.print("# {s}, {s} Sample\n\n", .{ sample.proper_name, language.proper_name });
             mw.paragraph(sample.long_description);
 
             self.generate_language_setup_steps(mw);
