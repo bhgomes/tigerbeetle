@@ -19,10 +19,11 @@ const samples = [_]Sample{
         \\account `2`.
         \\
         \\Then it fetches both accounts, checks they both exist, and
-        \\checks that account `1` has:
+        \\checks that **account `1`** has:
         \\ * `debits_posted = 10` and
         \\ * `credits_posted = 0`
-        \\And that account `2` has:
+        \\
+        \\And that **account `2`** has:
         \\ * `debits_posted= 0` and
         \\ * `credits_posted = 10`
         ,
@@ -44,6 +45,7 @@ const samples = [_]Sample{
         \\ * `credits_posted = 0`
         \\ * `debits_pending = 500` and
         \\ * `credits_pending = 0`
+        \\
         \\And that **account `2`** has:
         \\ * `debits_posted = 0`
         \\ * `credits_posted = 0`
@@ -69,7 +71,8 @@ const samples = [_]Sample{
         \\ * `credits_posted = 0`
         \\ * `debits_pending = 0` and
         \\ * `credits_pending = 0`
-        \\And that account `2` has:
+        \\
+        \\And that **account `2`** has:
         \\ * `debits_posted = 0`
         \\ * `credits_posted = 500`
         \\ * `debits_pending = 0` and

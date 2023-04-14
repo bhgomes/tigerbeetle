@@ -12,6 +12,7 @@ Then it checks that **account `1`** has:
  * `credits_posted = 0`
  * `debits_pending = 500` and
  * `credits_pending = 0`
+
 And that **account `2`** has:
  * `debits_posted = 0`
  * `credits_posted = 0`
@@ -37,7 +38,8 @@ Specifically, that **account `1`** has:
  * `credits_posted = 0`
  * `debits_pending = 0` and
  * `credits_pending = 0`
-And that account `2` has:
+
+And that **account `2`** has:
  * `debits_posted = 0`
  * `credits_posted = 500`
  * `debits_pending = 0` and
