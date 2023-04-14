@@ -917,7 +917,7 @@ const Generator = struct {
             mw.print(
                 \\# {s} {s} Sample
                 \\
-                \\  Code for this sample is primarily in [./{s}{s}.{s}](./{s}{s}.{s}).
+                \\Code for this sample is in [./{s}{s}.{s}](./{s}{s}.{s}).
                 \\
             , .{
                 sample.proper_name,
