@@ -51,6 +51,7 @@ const samples = [_]Sample{
         \\ * `credits_posted = 0`
         \\ * `debits_pending = 0` and
         \\ *`credits_pending = 500`
+        \\
         \\ This is because a pending
         \\transfer only affects pending credits and debits on accounts,
         \\not posted credits and debits.
