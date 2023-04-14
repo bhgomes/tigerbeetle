@@ -11,7 +11,7 @@ pub const GoDocs = Docs{
     .test_source_path = "",
 
     .name = "tigerbeetle-go",
-    .description =
+    .description = 
     \\The TigerBeetle client for Go.
     \\
     \\[![Go Reference](https://pkg.go.dev/badge/github.com/tigerbeetledb/tigerbeetle-go.svg)](https://pkg.go.dev/github.com/tigerbeetledb/tigerbeetle-go)
@@ -20,7 +20,7 @@ pub const GoDocs = Docs{
     \\this repo and subdirectory.
     ,
 
-    .prerequisites =
+    .prerequisites = 
     \\* Go >= 1.17
     ,
 
@@ -29,7 +29,7 @@ pub const GoDocs = Docs{
 
     .test_file_name = "",
 
-    .install_sample_file =
+    .install_sample_file = 
     \\package main
     \\
     \\import _ "github.com/tigerbeetledb/tigerbeetle-go"
@@ -42,7 +42,7 @@ pub const GoDocs = Docs{
 
     .install_prereqs = "",
 
-    .install_commands =
+    .install_commands = 
     \\go mod init tbtest
     \\go mod tidy
     ,
@@ -52,7 +52,7 @@ pub const GoDocs = Docs{
 
     .install_documentation = "",
 
-    .examples =
+    .examples = 
     \\### Sidenote: `uint128`
     \\
     \\Throughout this README there will be a reference to a
@@ -71,7 +71,7 @@ pub const GoDocs = Docs{
     \\```
     ,
 
-    .client_object_example =
+    .client_object_example = 
     \\client, err := tb.NewClient(0, []string{"3001", "3002", "3003"}, 1)
     \\if err != nil {
     \\	log.Printf("Error creating client: %s", err)
@@ -80,13 +80,13 @@ pub const GoDocs = Docs{
     \\defer client.Close()
     ,
 
-    .client_object_documentation =
+    .client_object_documentation = 
     \\The third argument to `NewClient` is a `uint` max concurrency
     \\setting. `1` is a good default and can increase to `4096`
     \\as you need increased throughput.
     ,
 
-    .create_accounts_example =
+    .create_accounts_example = 
     \\accountsRes, err := client.CreateAccounts([]tb_types.Account{
     \\	{
     \\		ID:     	uint128("137"),
@@ -113,11 +113,11 @@ pub const GoDocs = Docs{
     \\}
     ,
 
-    .create_accounts_documentation =
+    .create_accounts_documentation = 
     \\The `tb_types` package can be imported from `"github.com/tigerbeetledb/tigerbeetle-go/pkg/types"`.
     ,
 
-    .account_flags_documentation =
+    .account_flags_documentation = 
     \\To toggle behavior for an account, use the `tb_types.AccountFlags` struct
     \\to combine enum values and generate a `uint16`. Here are a
     \\few examples:
@@ -126,7 +126,7 @@ pub const GoDocs = Docs{
     \\* `tb_types.AccountFlags{DebitsMustNotExceedCredits: true}.ToUint16()`
     \\* `tb_types.AccountFlags{CreditsMustNotExceedDebits: true}.ToUint16()`
     ,
-    .account_flags_example =
+    .account_flags_example = 
     \\account0 := tb_types.Account{ /* ... account values ... */ }
     \\account1 := tb_types.Account{ /* ... account values ... */ }
     \\account0.Flags = tb_types.AccountFlags{Linked: true}.ToUint16()
@@ -138,7 +138,7 @@ pub const GoDocs = Docs{
     \\}
     ,
 
-    .create_accounts_errors_example =
+    .create_accounts_errors_example = 
     \\account2 := tb_types.Account{ /* ... account values ... */ }
     \\account3 := tb_types.Account{ /* ... account values ... */ }
     \\account4 := tb_types.Account{ /* ... account values ... */ }
@@ -154,13 +154,13 @@ pub const GoDocs = Docs{
     \\}
     ,
 
-    .create_accounts_errors_documentation =
+    .create_accounts_errors_documentation = 
     \\To handle errors you can either 1) exactly match error codes returned
     \\from `client.createAccounts` with enum values in the
     \\`CreateAccountError` object, or you can 2) look up the error code in
     \\the `CreateAccountError` object for a human-readable string.
     ,
-    .lookup_accounts_example =
+    .lookup_accounts_example = 
     \\accounts, err := client.LookupAccounts([]tb_types.Uint128{uint128("137"), uint128("138")})
     \\if err != nil {
     \\	log.Printf("Could not fetch accounts: %s", err)
@@ -169,7 +169,7 @@ pub const GoDocs = Docs{
     \\log.Println(accounts)
     ,
 
-    .create_transfers_example =
+    .create_transfers_example = 
     \\transfer := tb_types.Transfer{
     \\	ID:			uint128("1"),
     \\	PendingID:		tb_types.Uint128{},
@@ -192,7 +192,7 @@ pub const GoDocs = Docs{
     \\}
     ,
     .create_transfers_documentation = "",
-    .create_transfers_errors_example =
+    .create_transfers_errors_example = 
     \\for _, err := range transfersRes {
     \\	log.Printf("Batch transfer at %d failed to create: %s", err.Index, err.Result)
     \\	return
@@ -200,14 +200,14 @@ pub const GoDocs = Docs{
     ,
     .create_transfers_errors_documentation = "",
 
-    .no_batch_example =
+    .no_batch_example = 
     \\for i := 0; i < len(transfers); i++ {
     \\	errors := client.CreateTransfers(transfers[i]);
     \\	// error handling omitted
     \\}
     ,
 
-    .batch_example =
+    .batch_example = 
     \\BATCH_SIZE := 8191
     \\for i := 0; i < len(transfers); i += BATCH_SIZE {
     \\	batch := BATCH_SIZE
@@ -219,7 +219,7 @@ pub const GoDocs = Docs{
     \\}
     ,
 
-    .transfer_flags_documentation =
+    .transfer_flags_documentation = 
     \\To toggle behavior for an account, use the `tb_types.TransferFlags` struct
     \\to combine enum values and generate a `uint16`. Here are a
     \\few examples:
@@ -229,13 +229,13 @@ pub const GoDocs = Docs{
     \\* `tb_types.TransferFlags{PostPendingTransfer: true}.ToUint16()`
     \\* `tb_types.TransferFlags{VoidPendingTransfer: true}.ToUint16()`
     ,
-    .transfer_flags_link_example =
+    .transfer_flags_link_example = 
     \\transfer0 := tb_types.Transfer{ /* ... account values ... */ }
     \\transfer1 := tb_types.Transfer{ /* ... account values ... */ }
     \\transfer0.Flags = tb_types.TransferFlags{Linked: true}.ToUint16()
     \\transfersRes, err = client.CreateTransfers([]tb_types.Transfer{transfer0, transfer1})
     ,
-    .transfer_flags_post_example =
+    .transfer_flags_post_example = 
     \\transfer = tb_types.Transfer{
     \\	ID:		uint128("2"),
     \\	PendingID:	uint128("1"),
@@ -244,7 +244,7 @@ pub const GoDocs = Docs{
     \\}
     \\transfersRes, err = client.CreateTransfers([]tb_types.Transfer{transfer})
     ,
-    .transfer_flags_void_example =
+    .transfer_flags_void_example = 
     \\transfer = tb_types.Transfer{
     \\	ID:		uint128("2"),
     \\	PendingID:	uint128("1"),
@@ -255,7 +255,7 @@ pub const GoDocs = Docs{
     \\log.Println(transfersRes, err)
     ,
 
-    .lookup_transfers_example =
+    .lookup_transfers_example = 
     \\transfers, err := client.LookupTransfers([]tb_types.Uint128{uint128("1"), uint128("2")})
     \\if err != nil {
     \\	log.Printf("Could not fetch transfers: %s", err)
@@ -264,7 +264,7 @@ pub const GoDocs = Docs{
     \\log.Println(transfers)
     ,
 
-    .linked_events_example =
+    .linked_events_example = 
     \\batch := []tb_types.Transfer{}
     \\linkedFlag := tb_types.TransferFlags{Linked: true}.ToUint16()
     \\
@@ -295,7 +295,7 @@ pub const GoDocs = Docs{
 
     // Extra steps to determine commit and repo so this works in
     // CI against forks and pull requests.
-    .developer_setup_sh_commands =
+    .developer_setup_sh_commands = 
     \\git clone https://github.com/${GITHUB_REPOSITY:-tigerbeetledb/tigerbeetle}
     \\cd tigerbeetle
     \\git checkout $GIT_SHA
@@ -306,14 +306,14 @@ pub const GoDocs = Docs{
     ,
 
     .current_commit_pre_install_commands = "",
-    .current_commit_post_install_commands =
+    .current_commit_post_install_commands = 
     \\printf 'module tbtest\nreplace github.com/tigerbeetledb/tigerbeetle-go => '$(pwd)'/tigerbeetle/src/clients/go\ngo 1.18' > go.mod
     \\go mod tidy
     ,
 
     // Extra steps to determine commit and repo so this works in
     // CI against forks and pull requests.
-    .developer_setup_pwsh_commands =
+    .developer_setup_pwsh_commands = 
     \\git clone https://github.com/${GITHUB_REPOSITY:-tigerbeetledb/tigerbeetle}
     \\cd tigerbeetle
     \\git checkout $GIT_SHA
@@ -323,7 +323,7 @@ pub const GoDocs = Docs{
     \\[ "$TEST" = "true" ] && ./zgo.bat test || echo "Skipping client unit tests"
     ,
 
-    .test_main_prefix =
+    .test_main_prefix = 
     \\package main
     \\
     \\import "log"
