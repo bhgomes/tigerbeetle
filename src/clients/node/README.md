@@ -16,7 +16,9 @@ support. But for ease of development we also support macOS.
 
 ## Setup
 
-Run:
+ Create a directory for your project and `cd` into the directory.
+
+Then, install the TigerBeetle client:
 
 ```console
 $ npm install tigerbeetle-node

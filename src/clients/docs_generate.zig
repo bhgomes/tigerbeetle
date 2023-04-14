@@ -2,100 +2,12 @@ const builtin = @import("builtin");
 const std = @import("std");
 
 const Docs = @import("./docs_types.zig").Docs;
-const Sample = @import("./docs_types.zig").Sample;
 const go = @import("./go/docs.zig").GoDocs;
 const node = @import("./node/docs.zig").NodeDocs;
 const java = @import("./java/docs.zig").JavaDocs;
+const samples = @import("./docs_samples.zig").samples;
 
 const languages = [_]Docs{ go, node, java };
-const samples = [_]Sample{
-    .{
-        .proper_name = "Basic",
-        .directory = "basic",
-        .short_description = "Create two accounts and transfer an amount between them.",
-        .long_description = 
-        \\This project creates two accounts (`1` and `2`) and
-        \\transfers `10` of an amount from account `1` to
-        \\account `2`.
-        \\
-        \\Then it fetches both accounts, checks they both exist, and
-        \\checks that **account `1`** has:
-        \\ * `debits_posted = 10`
-        \\ * and `credits_posted = 0`
-        \\
-        \\And that **account `2`** has:
-        \\ * `debits_posted= 0`
-        \\ * and `credits_posted = 10`
-        ,
-    },
-    .{
-        .proper_name = "Two-Phase Transfer",
-        .directory = "two-phase",
-        .short_description = 
-        \\Create two accounts and start a pending transfer between
-        \\them, then post the transfer.
-        ,
-        .long_description = 
-        \\## 1. Create accounts
-        \\
-        \\This project starts by creating two accounts (`1` and `2`).
-        \\
-        \\## 2. Create pending transfer
-        \\
-        \\Then it begins a
-        \\pending transfer of `500` of an amount from account `1` to
-        \\account `2`.
-        \\
-        \\## 3. Fetch and validate pending account balances
-        \\
-        \\Then it fetches both accounts and validates that **account `1`** has:
-        \\ * `debits_posted = 0`
-        \\ * `credits_posted = 0`
-        \\ * `debits_pending = 500`
-        \\ * and `credits_pending = 0`
-        \\
-        \\And that **account `2`** has:
-        \\ * `debits_posted = 0`
-        \\ * `credits_posted = 0`
-        \\ * `debits_pending = 0`
-        \\ * and `credits_pending = 500`
-        \\
-        \\ (This is because a pending
-        \\transfer only affects pending credits and debits on accounts,
-        \\not posted credits and debits.)
-        \\
-        \\## 4. Post pending transfer
-        \\
-        \\Then it creates a second transfer that marks the first
-        \\transfer as posted.
-        \\
-        \\## 5. Fetch and validate transfers
-        \\It then fetches both transfers, validates
-        \\that the two transfers exist, validates that the first
-        \\transfer had (and still has) a `pending` flag, and validates
-        \\that the second transfer had (and still has) a
-        \\`post_pending_transfer` flag.
-        \\
-        \\## 6. Fetch and validate final account balances
-        \\
-        \\Finally, it fetches both accounts, validates they both exist,
-        \\and checks that credits and debits for both account are now
-        \\*posted*, not pending.
-        \\
-        \\Specifically, that **account `1`** has:
-        \\ * `debits_posted = 500`
-        \\ * `credits_posted = 0`
-        \\ * `debits_pending = 0`
-        \\ * and `credits_pending = 0`
-        \\
-        \\And that **account `2`** has:
-        \\ * `debits_posted = 0`
-        \\ * `credits_posted = 500`
-        \\ * `debits_pending = 0`
-        \\ * and `credits_pending = 0`
-        ,
-    },
-};
 
 const MarkdownWriter = struct {
     buf: *std.ArrayList(u8),
@@ -671,7 +583,7 @@ const Generator = struct {
         return aggregate.items;
     }
 
-    fn generate_language_setup_steps(self: Generator, mw: *MarkdownWriter) void {
+    fn generate_language_setup_steps(self: Generator, mw: *MarkdownWriter, directory_info: []const u8) void {
         var language = self.language;
 
         const windowsSupported: []const u8 = if (language.developer_setup_pwsh_commands.len > 0)
@@ -687,6 +599,8 @@ const Generator = struct {
 
         mw.header(2, "Setup");
 
+        mw.paragraph(directory_info);
+
         if (language.project_file.len > 0) {
             mw.print(
                 "First, create `{s}` and copy this into it:\n\n",
@@ -695,7 +609,7 @@ const Generator = struct {
             mw.code(language.markdown_name, language.project_file);
         }
 
-        mw.paragraph("Run:");
+        mw.paragraph("Then, install the TigerBeetle client:");
         mw.commands(language.install_commands);
     }
 
@@ -716,7 +630,11 @@ const Generator = struct {
         mw.paragraph(language.description);
 
         mw.header(3, "Prerequisites");
-        self.generate_language_setup_steps(mw);
+        self.generate_language_setup_steps(
+            mw,
+            \\ Create a directory for your project and `cd` into the directory.
+            ,
+        );
 
         mw.print("Now, create `{s}{s}.{s}` and copy this into it:\n\n", .{
             self.language.test_source_path,
@@ -990,12 +908,34 @@ const Generator = struct {
                 ,
             );
 
-            mw.print("# {s} {s} Sample\n\n", .{ sample.proper_name, language.proper_name });
-
-            mw.paragraph(sample.long_description);
+            mw.print(
+                \\# {s} {s} Sample\n\n
+                \\
+                \\  Code for this sample is primarily in [./{s}{s}.{s}](./{s}{s}.{s}).
+                \\
+            , .{
+                sample.proper_name,
+                language.proper_name,
+                language.test_source_path,
+                self.test_file_name,
+                language.extension,
+                language.test_source_path,
+                self.test_file_name,
+                language.extension,
+            });
 
             mw.header(2, "Prerequisites");
-            self.generate_language_setup_steps(mw);
+
+            self.generate_language_setup_steps(mw, self.sprintf(
+                "Clone this repo and `cd` into `tigerbeetle/src/clients/{s}/samples/{s}`",
+                .{
+                    language.directory,
+                    sample.directory,
+                },
+            ));
+
+            mw.header(2, "Walkthrough");
+            mw.paragraph(sample.long_description);
 
             const root = try git_root(self.arena);
             try mw.save(self.sprintf("{s}/src/clients/{s}/samples/{s}/README.md", .{
