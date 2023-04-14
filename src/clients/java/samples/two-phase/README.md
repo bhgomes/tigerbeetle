@@ -10,14 +10,14 @@ account `2`.
 Then it checks that **account `1`** has:
  * `debits_posted = 0`
  * `credits_posted = 0`
- * `debits_pending = 500` and
- * `credits_pending = 0`
+ * `debits_pending = 500`
+ * and `credits_pending = 0`
 
 And that **account `2`** has:
  * `debits_posted = 0`
  * `credits_posted = 0`
- * `debits_pending = 0` and
- *`credits_pending = 500`
+ * `debits_pending = 0`
+ * and `credits_pending = 500`
 
  This is because a pending
 transfer only affects pending credits and debits on accounts,
@@ -37,14 +37,14 @@ and checks that credits and debits for both account are now
 Specifically, that **account `1`** has:
  * `debits_posted = 500`
  * `credits_posted = 0`
- * `debits_pending = 0` and
- * `credits_pending = 0`
+ * `debits_pending = 0`
+ * and `credits_pending = 0`
 
 And that **account `2`** has:
  * `debits_posted = 0`
  * `credits_posted = 500`
- * `debits_pending = 0` and
- * `credits_pending = 0`
+ * `debits_pending = 0`
+ * and `credits_pending = 0`
 
 ## Prerequisites
 

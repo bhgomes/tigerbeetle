@@ -20,12 +20,12 @@ const samples = [_]Sample{
         \\
         \\Then it fetches both accounts, checks they both exist, and
         \\checks that **account `1`** has:
-        \\ * `debits_posted = 10` and
-        \\ * `credits_posted = 0`
+        \\ * `debits_posted = 10`
+        \\ * and `credits_posted = 0`
         \\
         \\And that **account `2`** has:
-        \\ * `debits_posted= 0` and
-        \\ * `credits_posted = 10`
+        \\ * `debits_posted= 0`
+        \\ * and `credits_posted = 10`
         ,
     },
     .{
@@ -43,14 +43,14 @@ const samples = [_]Sample{
         \\Then it checks that **account `1`** has:
         \\ * `debits_posted = 0`
         \\ * `credits_posted = 0`
-        \\ * `debits_pending = 500` and
-        \\ * `credits_pending = 0`
+        \\ * `debits_pending = 500`
+        \\ * and `credits_pending = 0`
         \\
         \\And that **account `2`** has:
         \\ * `debits_posted = 0`
         \\ * `credits_posted = 0`
-        \\ * `debits_pending = 0` and
-        \\ *`credits_pending = 500`
+        \\ * `debits_pending = 0`
+        \\ * and `credits_pending = 500`
         \\
         \\ This is because a pending
         \\transfer only affects pending credits and debits on accounts,
@@ -70,14 +70,14 @@ const samples = [_]Sample{
         \\Specifically, that **account `1`** has:
         \\ * `debits_posted = 500`
         \\ * `credits_posted = 0`
-        \\ * `debits_pending = 0` and
-        \\ * `credits_pending = 0`
+        \\ * `debits_pending = 0`
+        \\ * and `credits_pending = 0`
         \\
         \\And that **account `2`** has:
         \\ * `debits_posted = 0`
         \\ * `credits_posted = 500`
-        \\ * `debits_pending = 0` and
-        \\ * `credits_pending = 0`
+        \\ * `debits_pending = 0`
+        \\ * and `credits_pending = 0`
         ,
     },
 };
