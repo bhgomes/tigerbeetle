@@ -59,8 +59,8 @@ pub const samples = [_]Sample{
         \\ * and `credits_pending = 500`
         \\
         \\(This is because a pending
-        \\transfer only affects pending credits and debits on accounts,
-        \\not posted credits and debits.)
+        \\transfer only affects **pending** credits and debits on accounts,
+        \\not **posted** credits and debits.)
         \\
         \\## 4. Post pending transfer
         \\
