@@ -26,7 +26,7 @@ const SuperBlock = vsr.SuperBlockType(Storage);
 pub const tigerbeetle_config = @import("../config.zig").configs.fuzz_min;
 
 const Key = packed struct {
-    id: u64 align(@alignOf(u64)),
+    id: u64,
 
     const Value = packed struct {
         id: u64,
@@ -451,7 +451,7 @@ pub fn main() !void {
         .write_latency_mean = 0 + fuzz.random_int_exponential(random, u64, 20),
     };
 
-    const fuzz_op_count = @minimum(
+    const fuzz_op_count = @min(
         fuzz_args.events_max orelse @as(usize, 1E7),
         fuzz.random_int_exponential(random, usize, 1E6),
     );

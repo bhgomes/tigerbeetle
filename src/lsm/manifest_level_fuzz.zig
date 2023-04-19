@@ -4,7 +4,7 @@
 //!
 //! Applies operations to both the ManifestLevel and a separate table buffer to ensure the tables in
 //! both match up along the way. Sporadic usage similar to Manifest/Tree is applied to make sure it
-//! covers a good amount of positive space. 
+//! covers a good amount of positive space.
 //!
 //! Under various interleavings (those not common during normal usage but still allowed), tables are
 //! inserted and eventually either have their snapshot_max updated to the current snapshot or
@@ -142,7 +142,7 @@ const GenerateContext = struct {
         switch (fuzz_op_tag) {
             .insert_tables => {
                 // If there's no room for new tables, existing ones should be removed.
-                const insertable = @minimum(ctx.max_inserted - ctx.inserted, max_tables_per_insert);
+                const insertable = @min(ctx.max_inserted - ctx.inserted, max_tables_per_insert);
                 if (insertable == 0) {
                     // Decide whether to remove visible or invisible tables:
                     if (ctx.invisible > 0) return ctx.next(.remove_invisible);
@@ -352,7 +352,7 @@ fn EnvironmentType(comptime table_count_max: u32, comptime node_size: u32) type 
                 }
             } else std.math.maxInt(Key);
 
-            const max_delta = @minimum(32, next_key_min - 1 - new_key_min);
+            const max_delta = @min(32, next_key_min - 1 - new_key_min);
             const new_key_max = new_key_min + env.random.uintAtMostBiased(Key, max_delta);
 
             return .{

@@ -1,0 +1,9 @@
+[package]
+name = "tigerbeetle"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[build-dependencies]
+bindgen = { version = "0.65.1", default-features = false }

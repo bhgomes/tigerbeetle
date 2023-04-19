@@ -40,8 +40,9 @@ pub fn main() !void {
 
     const allocator = arena.allocator();
 
-    try tracer.init(allocator);
-    defer tracer.deinit(allocator);
+    // FIXME: go back to other tracer
+    try tracer.TracerNone.init(allocator);
+    defer tracer.TracerNone.deinit(allocator);
 
     var parse_args = try cli.parse_args(allocator);
     defer parse_args.deinit(allocator);

@@ -102,7 +102,7 @@ fn emit_enum(
 
         try buffer.writer().print("  {s} = {d},\n", .{
             field.name,
-            @enumToInt(@field(Type, field.name)),
+            @enumToInt(field.value),
         });
     }
 

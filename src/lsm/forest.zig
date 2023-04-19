@@ -10,12 +10,12 @@ const vsr = @import("../vsr.zig");
 const GridType = @import("grid.zig").GridType;
 const NodePool = @import("node_pool.zig").NodePool(constants.lsm_manifest_node_size, 16);
 
-pub fn ForestType(comptime Storage: type, comptime groove_config: anytype) type {
+pub fn ForestType(comptime Storage: type, comptime forest_groove_config: anytype) type {
     var groove_fields: []const std.builtin.TypeInfo.StructField = &.{};
     var groove_options_fields: []const std.builtin.TypeInfo.StructField = &.{};
 
-    for (std.meta.fields(@TypeOf(groove_config))) |field| {
-        const Groove = @field(groove_config, field.name);
+    for (std.meta.fields(@TypeOf(forest_groove_config))) |field| {
+        const Groove = @field(forest_groove_config, field.name);
         groove_fields = groove_fields ++ [_]std.builtin.TypeInfo.StructField{
             .{
                 .name = field.name,
@@ -67,7 +67,7 @@ pub fn ForestType(comptime Storage: type, comptime groove_config: anytype) type 
             open,
         };
 
-        pub const groove_config = groove_config;
+        pub const groove_config = forest_groove_config;
         pub const GroovesOptions = _GroovesOptions;
 
         join_op: ?JoinOp = null,

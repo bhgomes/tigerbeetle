@@ -6506,8 +6506,8 @@ const DVCQuorum = struct {
 
         const nacks = message.header.context;
         comptime assert(@TypeOf(nacks) == u128);
-        assert(@popCount(u128, nacks) <= headers.slice.len);
-        assert(@clz(u128, nacks) + headers.slice.len >= @bitSizeOf(u128));
+        assert(@popCount(nacks) <= headers.slice.len);
+        assert(@clz(nacks) + headers.slice.len >= @bitSizeOf(u128));
     }
 
     fn dvcs_all(dvc_quorum: QuorumMessages) DVCArray {

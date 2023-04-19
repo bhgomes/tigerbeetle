@@ -83,7 +83,7 @@ pub fn TableType(
     comptime table_tombstone_from_key: fn (TableKey) callconv(.Inline) TableValue,
     /// The maximum number of values per table.
     comptime table_value_count_max: usize,
-    comptime usage: TableUsage,
+    comptime table_usage: TableUsage,
 ) type {
     return struct {
         const Table = @This();
@@ -97,7 +97,7 @@ pub fn TableType(
         pub const tombstone = table_tombstone;
         pub const tombstone_from_key = table_tombstone_from_key;
         pub const value_count_max = table_value_count_max;
-        pub const usage = usage;
+        pub const usage = table_usage;
 
         // Export hashmap context for Key and Value
         pub const HashMapContextValue = struct {
@@ -974,7 +974,6 @@ pub fn TableType(
 
 test "Table" {
     const Key = @import("composite_key.zig").CompositeKey(u128);
-
     const Table = TableType(
         Key,
         Key.Value,
@@ -986,7 +985,5 @@ test "Table" {
         1, // Doesn't matter for this test.
         .general,
     );
-
-    _ = Table;
     std.testing.refAllDecls(Table.Builder);
 }

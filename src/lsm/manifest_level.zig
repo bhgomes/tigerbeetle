@@ -118,7 +118,7 @@ pub fn ManifestLevelType(
         }
 
         /// Remove the given table from the level assuming it's visible to `lsm.snapshot_latest`.
-        /// Returns the same, unmodified table passed in to differentiate itself from 
+        /// Returns the same, unmodified table passed in to differentiate itself from
         /// remove_table_invisible and guard against using the wrong function.
         pub fn remove_table_visible(
             level: *Self,
@@ -527,7 +527,7 @@ pub fn TestContext(
 
             var buffer: [13]TableInfo = undefined;
 
-            const count_max = @minimum(count_free, 13);
+            const count_max = @min(count_free, 13);
             const count = context.random.uintAtMostBiased(u32, count_max - 1) + 1;
 
             {
@@ -594,7 +594,7 @@ pub fn TestContext(
                 }
             } else math.maxInt(Key);
 
-            const max_delta = @minimum(32, next_key_min - 1 - new_key_min);
+            const max_delta = @min(32, next_key_min - 1 - new_key_min);
             const new_key_max = new_key_min + context.random.uintAtMostBiased(Key, max_delta);
 
             return .{
@@ -664,7 +664,7 @@ pub fn TestContext(
             const reference_len = @intCast(u32, context.reference.items.len);
             if (reference_len == 0) return;
 
-            const count_max = @minimum(reference_len, 13);
+            const count_max = @min(reference_len, 13);
             const count = context.random.uintAtMostBiased(u32, count_max - 1) + 1;
 
             assert(context.reference.items.len <= table_count_max);
